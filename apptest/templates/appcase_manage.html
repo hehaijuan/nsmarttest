@@ -1,0 +1,53 @@
+﻿<html lang="zh-CN">
+<!---------------------------------------------------------------------------
+作者：邹辉《自动化平台测试开发》书；日期：2018年1月；版本：autotestplat V1.0
+----------------------------------------------------------------------------->
+<head>
+{% load bootstrap4 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+<title>NSMT自动化测试平台</title>
+</head>
+<body role="document">
+<!-- 导航栏-->
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+<div class="container">
+    <a class="navbar-brand" href="#">&nbsp;</a>
+<ul class="nav justify-content-center">
+</ul>
+    <ul class="nav justify-content-end">
+        <li class="nav-link"><a style='color: white' href="#">{{ user}}</a></li>
+        <li class="nav-link"><a style='color: white' href="/logout/">退出</a></li>
+    </ul>
+</div>
+</nav>
+<!-- app测试用例列表-->
+<div class="row" style="padding-top: 10px">
+<div class="col-md-ll">
+<table class="table table-striped">
+<thead>
+<tr>
+    <th>ID</th><th>用例名称</th><th>脚本名称</th><th>是否选中</th><th>时间</th>
+</tr>
+    </thead>
+<tbody>
+{% for appcase in appcases %}
+<tr>
+<td>{{ appcase.id }}</td>
+<td>{{ appcase.appcasescrip }}</td>
+<td>{{ appcase.appcasename }}</td>
+    {% if appcase.appcaseselect == 1  %}
+        <td><input type="checkbox" checked = "checked" ></td>
+        {% else %}
+        <td><input type="checkbox" ></td>
+    {% endif %}
+
+<td>{{ appcase.create_time }}</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+</div>
+</body>
+</html>
